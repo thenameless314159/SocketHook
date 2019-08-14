@@ -2,4 +2,4 @@
 
 The hook can only be configured via an hooksettings.json at the base of the injector.
 
-![](https://image.noelshack.com/fichiers/2019/33/3/1565775896-sockethooksample.gif)
+![](https://i.imgur.com/9leXj2B.gif)
