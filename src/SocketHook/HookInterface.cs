@@ -10,7 +10,7 @@ namespace SocketHook
     {
         private int _count;
 
-        public void NotifyInstalled(int inProcess) => Console.WriteLine($"Successfully injected to {inProcess} !");
+        public void NotifyInstalled(string processName) => Console.WriteLine($"Successfully injected to {processName}.exe !");
 
         public void Message(string message) => Console.WriteLine(message);
 

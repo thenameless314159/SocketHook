@@ -31,7 +31,7 @@ namespace SocketHook
 
         public void Run(IContext context, string channelName, List<string> ipsWhitelist, int redirectionPort)
         {
-            _interface.NotifyInstalled(GetCurrentProcessId());
+            _interface.NotifyInstalled(Process.GetCurrentProcess().ProcessName);
             
             try
             {
