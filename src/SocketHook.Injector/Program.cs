@@ -44,7 +44,7 @@ namespace SocketHook.Injector
                     out var pId, 
                     _channelName, 
                     settings.RedirectedIps, 
-                    settings.RedirectedPort);
+                    settings.RedirectionPort);
             }
             catch (Exception ex)
             {

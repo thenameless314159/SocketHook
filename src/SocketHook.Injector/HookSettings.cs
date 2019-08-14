@@ -9,7 +9,7 @@ namespace SocketHook
     public class HookSettings
     {
         public string ExePath { get; set; }
-        public int RedirectedPort { get; set; }
+        public int RedirectionPort { get; set; }
         public IEnumerable<string> RedirectedIps { get; set; }
     }
 }
