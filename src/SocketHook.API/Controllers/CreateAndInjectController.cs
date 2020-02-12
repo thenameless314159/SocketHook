@@ -2,7 +2,6 @@
 using System.Web.Http;
 using System.Web.Http.Results;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using SocketHook.API.Models;
 using SocketHook.API.Services;
 
@@ -15,7 +14,7 @@ namespace SocketHook.API.Controllers
         public static void SetupDependencies(IServiceProvider services) =>
             HookService = services.GetRequiredService<IHookService>();
 
-        public IHttpActionResult Get(string exePath, [FromBody]InjectionSettings options)
+        public IHttpActionResult Put(string exePath, [FromBody]InjectionSettings options)
         {
             try
             {

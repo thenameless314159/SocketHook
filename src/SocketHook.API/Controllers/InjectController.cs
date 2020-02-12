@@ -17,7 +17,7 @@ namespace SocketHook.API.Controllers
         public static void SetupDependencies(IServiceProvider services) =>
             HookService = services.GetRequiredService<IHookService>();
 
-        public IHttpActionResult Get(int pId, [FromBody]InjectionSettings options)
+        public IHttpActionResult Put(int pId, [FromBody]InjectionSettings options)
         {
             try
             {
