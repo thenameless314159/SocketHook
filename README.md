@@ -6,7 +6,7 @@ Thanks to the recent update, you can either start the application with regular *
 
 ```json
 {
-	"InjectToExe": "C:\\Users\\User\\Desktop\\SomeProgram.exe",
+    "InjectToExe": "C:\\Users\\User\\Desktop\\SomeProgram.exe",
     "RedirectionPort": 8080,
     "RedirectedIps": [
       "xxx.xxx.xxx",
@@ -17,7 +17,7 @@ Thanks to the recent update, you can either start the application with regular *
 
 ```json
 {
-	"InjectToPId": 17881,
+    "InjectToPId": 17881,
     "RedirectionPort": 8080,
     "RedirectedIps": [
       "xxx.xxx.xxx",
