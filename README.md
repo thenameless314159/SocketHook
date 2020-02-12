@@ -30,9 +30,9 @@ Thanks to the recent update, you can either start the application with regular *
 
 Also, if no *InjectTo* args are being provided, the application will bind a **REST API** (default port is 80) to the localhost in order to allow any user to triggers **inject** or **createAndInject** directive to the application. A **killAll** directive is also provided in order to kill all the process that might have been created within this injector instance. The route are defined this way :
 
-- GET `http://127.0.0.1:80/api/createandinject?exePath=C:\\Users\\User\\Desktop\\SomeProgram.exe` 
+- PUT `http://127.0.0.1:80/api/createandinject?exePath=C:\\Users\\User\\Desktop\\SomeProgram.exe` 
 	- with [*this json model*](https://github.com/thenameless314159/SocketHook/tree/master/src/SocketHook.API/Models/InjectionSettings.cs) in the request body.
-- GET `http://127.0.0.1:80/api/inject?pId=17881` 
+- PUT `http://127.0.0.1:80/api/inject?pId=17881` 
 	- also with [*this json model*](https://github.com/thenameless314159/SocketHook/tree/master/src/SocketHook.API/Models/InjectionSettings.cs) in the request body.
 - DELETE `http://127.0.0.1:80/api/killall` for the **killAll** directive
 
