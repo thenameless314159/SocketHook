@@ -2,6 +2,8 @@
 
 This application allow the user to redirect any call to the windows API [*connect*](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-connect) of any process in order to redirect its connection to the configured local port.
 
+## Get started
+
 Thanks to the recent update, you can either start the application with regular **CLI args** or with a **json configuration file** on the working directory of the application (or with both). Here are two examples of json  config files :
 
 ```json
@@ -33,3 +35,8 @@ Also, if no *InjectTo* args are being provided, the application will bind a **RE
 - GET `http://127.0.0.1:80/api/inject?pId=17881` 
 	- also with [*this json model*](https://github.com/thenameless314159/SocketHook/tree/master/src/SocketHook.API/Models/InjectionSettings.cs) in the request body.
 - DELETE `http://127.0.0.1:80/api/killall` for the **killAll** directive
+
+## Important
+
+If you are experiencing any issue to bind the HTTP server to your specified port please check this article from Microsoft : 
+https://docs.microsoft.com/fr-fr/dotnet/framework/wcf/feature-details/configuring-http-and-https?redirectedfrom=MSDN
