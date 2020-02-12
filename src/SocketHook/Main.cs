@@ -2,11 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using static SocketHook.NativeSocketMethods;
 using static EasyHook.RemoteHooking;
@@ -20,18 +18,19 @@ namespace SocketHook
         private LocalHook _connectHook;
         private ushort _redirectionPort;
 
-        public Main(IContext context, string channelName, List<string> ipsWhitelist, int redirectionPort)
+        public Main(IContext context, string channelName, IEnumerable<string> ipsWhitelist, int redirectionPort)
         {
             _interface = IpcConnectClient<HookInterface>(channelName);
-            _whitelist = ipsWhitelist.Select(ip => IPAddress.Parse(ip));
+            _whitelist = ipsWhitelist.Select(IPAddress.Parse);
             _redirectionPort = (ushort)redirectionPort;
 
             _interface.Ping();
         }
 
-        public void Run(IContext context, string channelName, List<string> ipsWhitelist, int redirectionPort)
+        public void Run(IContext context, string channelName, IEnumerable<string> ipsWhitelist, int redirectionPort)
         {
-            _interface.NotifyInstalled(Process.GetCurrentProcess().ProcessName);
+            var currentProcess = Process.GetCurrentProcess();
+            _interface.NotifyInstalled(currentProcess.ProcessName, currentProcess.Id);
             
             try
             {

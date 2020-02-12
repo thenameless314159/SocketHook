@@ -1,20 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace SocketHook
 {
     public class HookInterface : MarshalByRefObject
     {
+        private readonly ILogger _logger;
         private int _count;
 
-        public void NotifyInstalled(string processName) => Console.WriteLine($"Successfully injected to {processName}.exe !");
+        public HookInterface(ILogger logger) => _logger = logger;
 
-        public void Message(string message) => Console.WriteLine(message);
+        public void NotifyInstalled(string processName, int pid) => _logger.LogInformation($"Successfully injected to {processName}.exe with pid={pid} !");
 
-        public void OnError(Exception ex) => Console.WriteLine(ex.ToString());
+        public void Message(string message) => _logger.LogInformation(message);
+
+        public void OnError(Exception ex)
+        {
+            _logger.LogError($"An unhandled exception happened with reason : {ex.Message}");
+            _logger.LogDebug(ex.ToString());
+        }
 
         /// <summary>
         /// Called to confirm that the IPC channel is still open / host application has not closed
