@@ -38,5 +38,5 @@ Also, if no *InjectTo* args are being provided, the application will bind a **RE
 
 ## Important
 
-If you are experiencing any issue to bind the HTTP server to your specified port please check this article from Microsoft : 
+If you are experiencing any issue binding the HTTP server to your specified port please check this article from Microsoft : 
 https://docs.microsoft.com/fr-fr/dotnet/framework/wcf/feature-details/configuring-http-and-https?redirectedfrom=MSDN
