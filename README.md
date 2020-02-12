@@ -1,6 +1,6 @@
 # <img src="https://cdn3.iconfinder.com/data/icons/medicon/512/syringe_injection_drug_steroid-512.png" width="32" height="32"> SocketHook
 
-This application allow the user to redirect any call to the windows API [*connect*](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-connect) to redirect its connection to the configured local port.
+This application allow the user to redirect any call to the windows API [*connect*](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-connect) of any process in order to redirect its connection to the configured local port.
 
 Thanks to the recent update, you can either start the application with regular **CLI args** or with a **json configuration file** on the working directory of the application (or with both). Here are two examples of json  config files :
 
