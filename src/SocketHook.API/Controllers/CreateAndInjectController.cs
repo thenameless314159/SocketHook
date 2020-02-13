@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +19,7 @@ namespace SocketHook.API.Controllers
         {
             try
             {
-                if (!HookService.TryCreateAndInject(exePath, options.RedirectionPort, options.RedirectedIps.ToString()))
+                if (!HookService.TryCreateAndInject(exePath, options.RedirectionPort, options.RedirectedIps.ToArray()))
                     return BadRequest($"Couldn't find exe at {exePath} !");
 
                 return Ok();

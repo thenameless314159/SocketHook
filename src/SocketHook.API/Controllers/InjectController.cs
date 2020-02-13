@@ -21,7 +21,7 @@ namespace SocketHook.API.Controllers
         {
             try
             {
-                if (!HookService.TryInject(pId, options.RedirectionPort, options.RedirectedIps.ToString()))
+                if (!HookService.TryInject(pId, options.RedirectionPort, options.RedirectedIps.ToArray()))
                     return BadRequest("Process has already been injected");
 
                 return Ok();

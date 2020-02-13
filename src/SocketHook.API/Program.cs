@@ -24,10 +24,10 @@ namespace SocketHook.API
                     .AddCommandLine(args))
                 .ConfigureLogging((ctx, logger) => 
                 {
-                    logger.AddConsole();
-                    logger.AddFilter("Microsoft.Extensions.Hosting.Internal.Host", LogLevel.Warning);
                     if (ctx.HostingEnvironment.IsDevelopment()) logger.SetMinimumLevel(LogLevel.Debug);
                     else logger.AddFilter("Microsoft.Hosting.Lifetime", LogLevel.Warning);
+                    logger.AddFilter("Microsoft.Extensions.Hosting.Internal.Host", LogLevel.Warning);
+                    logger.AddConsole();
                 })
                 .ConfigureServices((ctx, services) =>
                 {

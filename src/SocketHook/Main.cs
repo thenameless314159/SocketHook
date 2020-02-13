@@ -14,57 +14,66 @@ namespace SocketHook
     public class Main : IEntryPoint
     {
         private IEnumerable<IPAddress> _whitelist;
-        private HookInterface _interface;
+        private readonly HookInterface _logger;
         private LocalHook _connectHook;
         private ushort _redirectionPort;
 
         public Main(IContext context, string channelName, IEnumerable<string> ipsWhitelist, int redirectionPort)
         {
-            _interface = IpcConnectClient<HookInterface>(channelName);
-            _whitelist = ipsWhitelist.Select(IPAddress.Parse);
-            _redirectionPort = (ushort)redirectionPort;
-
-            _interface.Ping();
+            _logger = IpcConnectClient<HookInterface>(channelName);
         }
 
         public void Run(IContext context, string channelName, IEnumerable<string> ipsWhitelist, int redirectionPort)
         {
-            var currentProcess = Process.GetCurrentProcess();
-            _interface.NotifyInstalled(currentProcess.ProcessName, currentProcess.Id);
-            
             try
             {
+                _whitelist = ipsWhitelist.ToList().Select(IPAddress.Parse);
+                _redirectionPort = (ushort)redirectionPort;
+
                 _connectHook = LocalHook.Create(
                     LocalHook.GetProcAddress("Ws2_32.dll", "connect"),
                     new WinsockConnectDelegate(_onConnect), this);
 
+                WakeUpProcess(); 
+                var currentProcess = Process.GetCurrentProcess(); 
+                _logger.NotifyInstalled(currentProcess.ProcessName, currentProcess.Id);
                 _connectHook.ThreadACL.SetExclusiveACL(new[] { 0 });
             }
-            catch (Exception ex) { _interface.OnError(ex); }
-
-            WakeUpProcess();
+            catch (Exception ex) { _logger.OnError(ex); }
             while (true) Thread.Sleep(1000);
         }
 
         private int _onConnect(IntPtr socket, IntPtr address, int addrSize)
         {
-            var structure = Marshal.PtrToStructure<sockaddr_in>(address);
-            var ipAddress = new IPAddress(structure.sin_addr.S_addr);
-            var port = structure.sin_port;
-
-            if (!_whitelist.Contains(ipAddress)) return connect(socket, address, addrSize);
-
-            _interface.Message($"Connection attempt at {ipAddress}:{port}, redirecting to 127.0.0.1:{_redirectionPort}...");
-            var strucPtr = Marshal.AllocHGlobal(addrSize);
-            var struc = new sockaddr_in
+            try
             {
-                sin_addr = { S_addr = inet_addr("127.0.0.1") },
-                sin_port = htons(_redirectionPort),
-                sin_family = (short)AddressFamily.InterNetworkv4,
-            };
+                var structure = Marshal.PtrToStructure<sockaddr_in>(address);
+                var ipAddress = new IPAddress(structure.sin_addr.S_addr);
+                var port = structure.sin_port;
+                _logger.LogInformation($"Connection attempt at {ipAddress}:{port} successfully intercepted !");
 
-            Marshal.StructureToPtr(struc, strucPtr, true);
-            return connect(socket, strucPtr, addrSize);
+                if (!_whitelist.Contains(ipAddress)) 
+                {
+                    _logger.LogWarning("Address wasn't in registered whitelist, the client will connect to it directly.");
+                    return connect(socket, address, addrSize);
+                }
+
+                var strucPtr = Marshal.AllocHGlobal(addrSize);
+                var struc = new sockaddr_in
+                {
+                    sin_addr = {S_addr = inet_addr("127.0.0.1")},
+                    sin_port = htons(_redirectionPort),
+                    sin_family = (short) AddressFamily.InterNetworkv4,
+                };
+                _logger.LogDebug($"Intercepted address successfully rewritten to 127.0.0.1:{_redirectionPort}, attempting to connect...");
+                Marshal.StructureToPtr(struc, strucPtr, true);
+                return connect(socket, strucPtr, addrSize);
+            }
+            catch (Exception e)
+            {
+                _logger.OnError(e);
+                return default;
+            }
         }
     }
 }
