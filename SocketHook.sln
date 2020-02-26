@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketHook", "src\SocketHoo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketHook.API", "src\SocketHook.API\SocketHook.API.csproj", "{049BADE4-9257-48FA-9D82-16452B89CDA6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B1B68385-416A-47C1-A443-51FEB7AB6DDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketHook.Extensions", "src\SocketHook.Extensions\SocketHook.Extensions.csproj", "{9D5FB345-75B2-453B-8DB9-F7301973380B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketHook.HostedWpfSample", "samples\SocketHook.HostedWpfSample\SocketHook.HostedWpfSample.csproj", "{03C42374-08EC-4CAA-8088-9A8B012C1BAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +29,14 @@ Global
 		{049BADE4-9257-48FA-9D82-16452B89CDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{049BADE4-9257-48FA-9D82-16452B89CDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{049BADE4-9257-48FA-9D82-16452B89CDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5FB345-75B2-453B-8DB9-F7301973380B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5FB345-75B2-453B-8DB9-F7301973380B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5FB345-75B2-453B-8DB9-F7301973380B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5FB345-75B2-453B-8DB9-F7301973380B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C42374-08EC-4CAA-8088-9A8B012C1BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C42374-08EC-4CAA-8088-9A8B012C1BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C42374-08EC-4CAA-8088-9A8B012C1BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C42374-08EC-4CAA-8088-9A8B012C1BAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{847BFE7D-83B6-478B-81E4-A57B5EDA6C27} = {2F405002-93D6-4837-96D1-E2CC2F9D4438}
 		{049BADE4-9257-48FA-9D82-16452B89CDA6} = {2F405002-93D6-4837-96D1-E2CC2F9D4438}
+		{9D5FB345-75B2-453B-8DB9-F7301973380B} = {2F405002-93D6-4837-96D1-E2CC2F9D4438}
+		{03C42374-08EC-4CAA-8088-9A8B012C1BAC} = {B1B68385-416A-47C1-A443-51FEB7AB6DDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41D08C75-E025-4873-962A-E906D8C5B8FC}

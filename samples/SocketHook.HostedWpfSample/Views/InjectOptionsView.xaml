@@ -1,0 +1,53 @@
+﻿<Window x:Class="SocketHook.HostedWpfSample.Views.InjectOptionsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SocketHook.HostedWpfSample.Views"
+        mc:Ignorable="d" Title="InjectOptionsView" Height="175" Width="400" BorderThickness="0"
+        SnapsToDevicePixels="True" ResizeMode="NoResize" WindowStyle="None" MouseLeftButtonDown="WindowMouseLeftButtonDown"
+        d:DataContext="{d:DesignData InjectOptionsViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DockPanel Name="Header" Grid.Row="0" Background="#333333">
+            <Label DockPanel.Dock="Left" Content="Inject options" Foreground="#f1f1f1" Margin="0,0,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" DockPanel.Dock="Right" >
+                <Button Name="Exit" Content="❌" Click="Exit_Click" Width="24"
+                        Background="Transparent" Foreground="#f1f1f1" BorderThickness="0"  Margin="0,-5,-5,-5"/>
+            </StackPanel>
+        </DockPanel>
+        <Separator Grid.Row="1" Background="#1e1e1e" />
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Settings path: " FontSize="14" />
+                <TextBox Width="260" Margin="11,5,5,5" FontSize="12" Text="{Binding SettingsFilePath}" />
+                <Button Content="📂" Margin="0,5,0,5" Command="{Binding SelectFileFromExplorer}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Redirected ips: " FontSize="14" />
+                <TextBox Width="286" MaxHeight="75" Height="Auto" Margin="5" FontSize="12" Text="{Binding RedirectedIps}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Redirect at port:" FontSize="14" />
+                <TextBox Width="50" Margin="0.5,5,5,5" FontSize="12" Text="{Binding RedirectionPort}" />
+                <Grid Visibility="{Binding Path=IsPortNotValid, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Rectangle Fill="Red" Stroke="Red" StrokeThickness="2" RadiusY="14.5" RadiusX="14.5"  Width="16" Height="16" />
+                    <Label Content="✗" Foreground="White" Padding="6" FontSize="12" />
+                </Grid>
+                <Grid Visibility="{Binding Path=IsPortValid, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Rectangle Fill="Green" Stroke="Green" StrokeThickness="2" RadiusY="14.5" RadiusX="14.5"  Width="16" Height="16"/>
+                    <Label Content="✓" Foreground="White" Padding="6" FontSize="12"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5" Height="35">
+            <Button Content="Save" FontSize="16" FontWeight="Bold" Width="50" Command="{Binding Save}" CommandParameter="{Binding SettingsFilePath}" />
+            <Button Content="Load" FontSize="16" FontWeight="Bold" Width="50" Margin="2,0,0,0" Command="{Binding Load}" CommandParameter="{Binding SettingsFilePath}"/>
+        </StackPanel>
+    </Grid>
+</Window>

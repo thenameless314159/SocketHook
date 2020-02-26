@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>thenameless314159</Authors>
+    <Description>Provides .NET Core hosting friendly DI registration API to interact with the SocketHook REST API and manage its lifetime.</Description>
+    <Copyright>Copyright 2020</Copyright>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/thenameless314159/SocketHook</RepositoryUrl>
+    <RepositoryType>C#</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIcon>a7j8z-buwnq-0.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageProjectUrl>https://github.com/thenameless314159/SocketHook</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\Desktop\a7j8z-buwnq-0.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

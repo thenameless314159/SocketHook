@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "SocketHook.HostedWpfSample": {
+      "commandName": "Project",
+      "commandLineArgs": "--environment=development --exePath=../../../../../src/SocketHook.Api/bin/debug/SocketHook.API.exe --injectOptionsFilePath=./injectoptions.json"
+    },
+    "SocketHook.HostedWpfSample-Prod": {
+      "commandName": "Project",
+      "commandLineArgs": "--environment=production --exePath=../../../../../src/SocketHook.Api/bin/debug/SocketHook.API.exe --injectOptionsFilePath=./injectoptions.json"
+    }
+  }
+}
