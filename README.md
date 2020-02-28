@@ -50,12 +50,12 @@ The registration logic looks like this :
 	services.AddSocketHook(opt =>
 	{
 		opt.AddConfiguration(ctx.Configuration);
-     	opt.Configure(x =>
-     	{
+		opt.Configure(x =>
+		{
 			x.UseHookServiceFactory = true;
-          	x.OpenHookOnStartup = true;
-          	x.KillAllOnExit = true;
-     	});
+			x.OpenHookOnStartup = true;
+			x.KillAllOnExit = true;
+		});
 	});
 ```
 
